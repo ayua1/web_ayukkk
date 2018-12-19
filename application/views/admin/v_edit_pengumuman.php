@@ -11,7 +11,7 @@
       </div>
       <div class="form-group">
         <label>Isi</label>
-        <textarea cols="30" rows="5" class="form-control" name="isi"><?=$isi_tabel->isi;?></textarea> 
+        <textarea cols="30" rows="5" class="form-control" name="<?=$isi_tabel->isi;?>"></textarea> 
          </div>
       <div class="form-group">
         <label>Penulis</label>

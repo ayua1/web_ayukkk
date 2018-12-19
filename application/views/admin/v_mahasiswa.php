@@ -34,7 +34,7 @@
             <td><?= date('d M Y', strtotime($value->created_at)) ?></td>
             <td>
 
-              <a href="#" class="btn btn-warning"> Edit </a>
+              <a href="<?= site_url('admin/mahasiswa/edit/'.$value->nim); ?>" class="btn btn-warning"> Edit </a>
               <a href="<?= site_url('admin/mahasiswa/hapus/'.$value->nim); ?>" class="btn btn-danger"> Hapus </a>
             </td>
           </tr>

@@ -48,31 +48,73 @@ class Mahasiswa extends CI_Controller
 		if ($this->mahasiswa_model->create($objek)) {
 			
 			$this->session->set_flashdata('info','Data Berhasil Di Simpan !!');
-			redirect('admin/mahasiswa');
+			redirect('admin/mahasiswa', 'refresh');
 
 		}else{
 			
 			$this->session->set_flashdata('info','Data gagal Di Simpan !!');
-			redirect('admin/mahasiswa');
+			redirect('admin/mahasiswa', 'refresh');
 
 		}
 		
 	}
 
-		public function hapus($kode)
+	public function hapus($kode)
 	{
 		if ($this->mahasiswa_model->remove($kode)) {
 	
 		$this->session->set_flashdata('info','Data Berhasil Di Hapus !!');
-			redirect('admin/mahasiswa');
+			redirect('admin/mahasiswa','refresh');
 
 		}else{
 			
 			$this->session->set_flashdata('info','Data gagal Di Hapus!!');
-			redirect('admin/mahasiswa');
+			redirect('admin/mahasiswa','refresh');
 
 		}
 	}
 
+	public function edit($id)
+	{
 	
+		$data['judul'] = 'Edit Mahasiswa';
+		$data['sub_judul'] = 'Halaman Edit Data Mahasiswa';
+		$data['halaman'] = 'admin/v_edit_mahasiswa';
+
+
+		$data['isi_tabel'] = $this->mahasiswa_model->get_id($id);
+		// var_dump($data);
+
+		$this->load->view('admin/v_template',$data);
+
+
+		
+	}
+
+	public function proses_edit()
+	{
+		$nim = $this->input->post('nim');
+		$nama = $this->input->post('mhs');
+		$prodi = $this->input->post('prodi');
+		
+
+		$objek = array(
+		'nama_mhs' => $nama , 
+		'program_studi' => $prodi
+		);
+		
+		
+		if ($this->mahasiswa_model->update($nim, $objek)) {
+			
+			$this->session->set_flashdata('info','Data Berhasil Di Ubah !!');
+			redirect('admin/mahasiswa','refresh');
+
+		}else{
+			
+			$this->session->set_flashdata('info','Data gagal Di Ubah!!');
+			redirect('admin/mahasiswa','refresh');
+
+		}
+		// var_dump($objek);
+	}
 }

@@ -22,4 +22,15 @@ class Dosen_model extends CI_Model {
 		return $this->db->delete('dosen',array('nik'=> $kode));
 	}
 	
+	public function get_id($kode)
+	{
+		return $this->db->where('nik',$kode)->get('dosen')->row();
+		
+	}
+
+	public function update($id, $objek)
+	{
+		return $this->db->where('nik',$id)->update('dosen',$objek );
+	}
+
 }
